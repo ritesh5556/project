@@ -41,7 +41,7 @@ const List = mongoose.model("List", listSchema)
 
 app.get("/", function(req, res){
 
-Item.find().then(docs =>{
+Item.find().maxTimeMS(20000).then(docs =>{
     if(docs.length === 0){
         Item.insertMany(defaultItems)
         .then(docs => {
